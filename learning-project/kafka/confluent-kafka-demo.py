@@ -6,7 +6,7 @@ import socket
 
 # Kafka 配置
 BOOTSTRAP_SERVERS = 'localhost:9092'  # 默认本地地址
-TOPIC_NAME = 'test_topic'  # 测试用主题
+TOPIC_NAME = 'fastapi-kafka'  # 测试用主题
 GROUP_ID = 'test_group'  # 消费者组ID
 
 
