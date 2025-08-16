@@ -33,3 +33,7 @@ GET请求 -> 查询
     /student/1 表示获取id为1的学生
 DELETE请求 -> 删除
 PUT请求 -> 修改
+
+## form表单数据
+在OAuth规范的一种实用方式（密码流）中，需要将用户名、密码作为表单字段发送，而不是json
+FastAPI 用Form组件接受表单数据
