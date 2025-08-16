@@ -37,3 +37,18 @@ PUT请求 -> 修改
 ## form表单数据
 在OAuth规范的一种实用方式（密码流）中，需要将用户名、密码作为表单字段发送，而不是json
 FastAPI 用Form组件接受表单数据
+
+
+## aerich
+### 初始化配置（只需要执行一次）
+aerich init -t settings.TORTOISE_ORM
+
+### 初始化数据库，一般情况下只执行一次
+aerich init-db
+
+### 如果有的模型新加了字段，更新模型并进行迁移
+aerich migrate
+但是这个命令只是写了命令，没有真正执行
+执行升级 降级
+    aerich upgrade 升级 添加字段
+    aerich downgrade 降级 删除添加的字段
