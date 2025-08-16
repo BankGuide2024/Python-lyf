@@ -7,8 +7,11 @@
 @Date   : 2025/8/16
 @Desc   : 
 """
+from typing import List
 from fastapi import APIRouter
 from models import *
+from pydantic import BaseModel, field_validator
+
 student_api = APIRouter()
 
 @student_api.get('/')
@@ -40,9 +43,32 @@ async def getAllStudent():
         "操作":students
     }
 
+class StudentIn(BaseModel):
+    sno: int
+    pwd: str
+    name: str
+    courses : List[int]
+    clas_id: int
+
+    @field_validator("name")
+    def name_must_alpha(cls, value):
+        assert value.isalpha,"姓名必须是英文字母"
+        return value
 
 @student_api.post('/')
-def getAllStudent():
+async def getAllStudent(student_in: StudentIn):
+
+    # 插入到数据库
+    # 方式1
+    # student = Student(name=student_in.name, sno=student_in.sno, pwd=student_in.pwd,clas_id=student_in.clas_id)
+    # await student.save() # 插入数据库
+
+    # 方式2
+    # student = await Student.create(name=student_in.name, sno=student_in.sno, pwd=student_in.pwd,clas_id=student_in.clas_id)
+
+    # 多对多的关系绑定
+    student = await Student.create(name=student_in.name, sno=student_in.sno, pwd=student_in.pwd,clas_id=student_in.clas_id)
+    # ??
     return {
         "操作": "查看所有的学生"
     }
