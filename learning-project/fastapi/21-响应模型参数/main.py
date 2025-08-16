@@ -14,7 +14,7 @@ from apps.app01 import app01
 
 app = FastAPI()
 
-app.include_router(app01,tags=["响应模型参数"])
+app.include_router(app01,tags=["resquest"])
 
 if __name__ == '__main__':
     uvicorn.run(app)
