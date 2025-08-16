@@ -8,7 +8,7 @@
 @Desc   : 
 """
 from typing import List
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from models import *
 from pydantic import BaseModel, field_validator
 
@@ -74,19 +74,25 @@ async def getAllStudent(student_in: StudentIn):
     }
 
 @student_api.get('/{student_id}')
-def getOneStudent(student_id: int):
+async def getOneStudent(student_id: int):
+    students = await Student.get(id=student_id)  # [{"name":name1},{"name":name2}]
     return {
         "操作": f"查看id={student_id}所有的学生"
     }
 
 @student_api.delete('/{student_id}')
-def deleteOneStudent(student_id: int):
+async def deleteOneStudent(student_id: int):
+    deleteCount = await Student().filter(id=student_id).delete()
+    if not deleteCount:
+        raise HTTPException(status_code=404, detail=f"主键为{student_id}的不存在")
     return {
         "操作": f"删除id={student_id}所有的学生"
     }
 
 @student_api.put('/{student_id}')
-def putOneStudent(student_id: int):
+async def putOneStudent(student_id: int, student_in: StudentIn):
+    student = await Student().filter(id=student_id).update(**student_in.model_dump())
+
     return {
         "操作": f"更新id={student_id}所有的学生"
     }
