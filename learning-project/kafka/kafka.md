@@ -15,3 +15,5 @@ C:\Python-lyf\learning-project\kafka> python confluent-kafka-demo.py --full
 
 ## ubuntu
 lyf@lyf:~/Downloads/kafka_2.13-4.0.0$ bin/kafka-server-start.sh config/server.properties
+
+lyf@lyf:~/Downloads/kafka_2.13-4.0.0$ bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic fastapi-kafka
