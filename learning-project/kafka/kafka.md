@@ -1,4 +1,5 @@
 # kafka
+## windows
 ### 启动zookeeper
 C:\kafka_2.13-3.9.1> bin\windows\zookeeper-server-start.bat config\zookeeper.properties
 
@@ -11,3 +12,6 @@ C:\Python-lyf\learning-project\kafka> python kafka-python-demo.py --full
 
 confluent-kafka 启动
 C:\Python-lyf\learning-project\kafka> python confluent-kafka-demo.py --full
+
+## ubuntu
+lyf@lyf:~/Downloads/kafka_2.13-4.0.0$ bin/kafka-server-start.sh config/server.properties
